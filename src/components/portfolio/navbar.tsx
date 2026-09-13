@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Menu, X, ArrowUpRight, FileText } from "lucide-react";
+import { Menu, X, ArrowUpRight, FileText, Linkedin, Github } from "lucide-react";
 
 const NAV_LINKS = [
   { label: "Projects", href: "#projects" },
@@ -28,12 +28,32 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between px-5 sm:px-6">
-        {/* Left — monospaced logo */}
+        {/* Left — logo with brand */}
         <a
           href="#top"
-          className="font-mono text-sm font-medium tracking-tight text-neutral-900"
+          className="group flex items-center gap-2.5 font-mono text-sm font-medium tracking-tight text-neutral-900 transition-opacity hover:opacity-80"
         >
-          ziyad.dev
+          <svg
+            viewBox="0 0 512 512"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-black"
+            aria-hidden="true"
+          >
+            <circle
+              cx="256"
+              cy="256"
+              r="232"
+              stroke="currentColor"
+              strokeWidth="26"
+              fill="none"
+            />
+            <path
+              d="M136 131 H376 V191 L224 321 H376 V381 H136 V321 L288 191 H136 Z"
+              fill="currentColor"
+            />
+          </svg>
+          <span>ziadabdelbaqi.dev</span>
         </a>
 
         {/* Center — desktop nav */}
@@ -50,10 +70,30 @@ export function Navbar() {
           ))}
         </ul>
 
-        {/* Right — resume button + mobile toggle */}
+        {/* Right — resume button + social + mobile toggle */}
         <div className="flex items-center gap-2">
           <a
-            href="#contact"
+            href="https://github.com/zyadabdelbaqi"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub Profile"
+            className="hidden items-center justify-center rounded-md border border-neutral-200 p-1.5 text-neutral-600 transition-colors hover:border-neutral-900 hover:text-neutral-900 md:inline-flex"
+          >
+            <Github strokeWidth={1.5} className="h-3.5 w-3.5" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/ziadabdelbaqi"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn Profile"
+            className="hidden items-center justify-center rounded-md border border-neutral-200 p-1.5 text-neutral-600 transition-colors hover:border-neutral-900 hover:text-neutral-900 md:inline-flex"
+          >
+            <Linkedin strokeWidth={1.5} className="h-3.5 w-3.5" />
+          </a>
+          <a
+            href="/resume"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden items-center gap-1.5 rounded-md border border-neutral-900 px-3 py-1.5 text-xs font-medium text-neutral-900 transition-colors hover:bg-neutral-900 hover:text-white md:inline-flex"
           >
             <FileText strokeWidth={1.5} className="h-3.5 w-3.5" />
@@ -91,14 +131,36 @@ export function Navbar() {
                 </a>
               </li>
             ))}
-            <li className="py-3">
+            <li className="flex flex-wrap items-center gap-2 py-3">
               <a
-                href="#contact"
+                href="/resume"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
                 className="inline-flex items-center gap-1.5 rounded-md border border-neutral-900 px-3 py-2 text-xs font-medium text-neutral-900"
               >
                 <FileText strokeWidth={1.5} className="h-3.5 w-3.5" />
                 Resume
+              </a>
+              <a
+                href="https://github.com/zyadabdelbaqi"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200 px-3 py-2 text-xs font-medium text-neutral-700"
+              >
+                <Github strokeWidth={1.5} className="h-3.5 w-3.5" />
+                GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ziadabdelbaqi"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200 px-3 py-2 text-xs font-medium text-neutral-700"
+              >
+                <Linkedin strokeWidth={1.5} className="h-3.5 w-3.5" />
+                LinkedIn
               </a>
             </li>
           </ul>

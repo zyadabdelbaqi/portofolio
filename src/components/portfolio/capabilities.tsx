@@ -41,7 +41,7 @@ const CAPABILITIES: Capability[] = [
     icon: Workflow,
     items: [
       "SaaS System Design",
-      "Offline-First Applications",
+      "Multi-Tenant Architecture",
       "Code Obfuscation",
       "Product-Minded Execution",
     ],

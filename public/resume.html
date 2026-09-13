@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ziad Abdulbaqi - ATS Resume</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Control Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter for clean readable ATS typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f3f4f6;
+            color: #111827;
+            line-height: 1.5;
+        }
+
+        /* Standard A4 Paper styling for web preview */
+        .a4-page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 18mm 20mm;
+            margin: 20px auto;
+            background: #ffffff;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            box-sizing: border-box;
+            border-radius: 2px;
+        }
+
+        /* ATS standard heading lines */
+        .section-header {
+            border-bottom: 1.5px solid #111827;
+            padding-bottom: 3px;
+            margin-bottom: 10px;
+            margin-top: 18px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #111827;
+        }
+
+        /* PRINT STYLES FOR FLAWLESS PDF GENERATION */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 12mm 15mm 12mm 15mm;
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 10.5pt;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .a4-page {
+                width: 100% !important;
+                min-height: auto !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                box-shadow: none !important;
+                border: none !important;
+            }
+
+            a {
+                color: #000000 !important;
+                text-decoration: none !important;
+            }
+
+            .section-header {
+                border-bottom: 1.5px solid #000000 !important;
+                color: #000000 !important;
+                page-break-after: avoid;
+            }
+
+            .project-block, .job-block {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start pb-12">
+
+    <!-- Top Action Bar (Hidden when printing) -->
+    <header class="no-print w-full bg-slate-900 text-white sticky top-0 z-50 shadow-md border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <a href="/" class="flex items-center gap-2 text-slate-400 hover:text-white transition text-xs font-medium mr-2">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Portfolio</span>
+                </a>
+                <div class="bg-blue-600 p-2 rounded-lg text-white">
+                    <i class="fa-solid fa-id-card text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-base leading-tight">Curriculum Vitae (ATS Optimized)</h1>
+                    <p class="text-xs text-slate-400">Ziad Abdulbaqi | Full-Stack Developer &amp; SaaS Engineer</p>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center flex-wrap gap-2">
+                <button onclick="copyPlainText()" class="flex items-center gap-2 px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg transition border border-slate-700">
+                    <i class="fa-solid fa-copy"></i>
+                    <span>Copy Text</span>
+                </button>
+
+                <button onclick="window.print()" class="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-lg shadow transition">
+                    <i class="fa-solid fa-print"></i>
+                    <span>Save as PDF / Print</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="no-print fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 border border-slate-700 transition-all duration-300 opacity-0 pointer-events-none translate-y-4 z-50">
+        <i id="toastIcon" class="fa-solid fa-check-circle text-emerald-400 text-lg"></i>
+        <span id="toastMessage" class="text-xs font-medium">Notification message</span>
+    </div>
+
+    <!-- Instructions banner for user -->
+    <div class="no-print max-w-6xl w-full px-4 mt-4">
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-3 text-xs text-blue-900 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-info text-blue-600 text-base"></i>
+                <span><strong>Tips for saving PDF:</strong> In the print preview window, set <strong>Destination</strong> to <em>"Save as PDF"</em>, select <strong>Paper Size</strong> as <em>"A4"</em>, set <strong>Margins</strong> to <em>"None" or "Default"</em>, and disable <em>"Headers and footers"</em>.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN RESUME DOCUMENT (A4 Size Printable Canvas) -->
+    <main id="resumeContent" class="a4-page text-gray-900 text-[10.5pt] leading-relaxed">
+        
+        <!-- HEADER SECTION -->
+        <header class="text-center mb-4">
+            <h1 class="text-2xl font-bold uppercase tracking-tight text-black mb-1">ZIAD ABDULBAQI</h1>
+            <p class="text-sm font-semibold text-gray-800 tracking-wide mb-2">Full-Stack Developer | SaaS Engineer</p>
+            
+            <!-- Contact Information Line -->
+            <div class="text-[9.5pt] text-gray-700 flex flex-wrap justify-center items-center gap-x-2 gap-y-1">
+                <span>Al Mahallah al Kubra, Gharbiya, Egypt</span>
+                <span class="text-gray-400">•</span>
+                <span>(+20) 1204746971</span>
+                <span class="text-gray-400">•</span>
+                <a href="mailto:zyadzoiruwk@gmail.com" class="hover:underline text-black">zyadzoiruwk@gmail.com</a>
+            </div>
+
+            <!-- Links Line -->
+            <div class="text-[9.5pt] text-gray-800 flex flex-wrap justify-center items-center gap-x-3 gap-y-1 mt-1 font-medium">
+                <a href="https://ziadabdelbaqi.dev" target="_blank" class="hover:underline">Portfolio: ziadabdelbaqi.dev</a>
+                <span class="text-gray-400">•</span>
+                <a href="https://linkedin.com/in/ziadabdelbaqi" target="_blank" class="hover:underline">LinkedIn: linkedin.com/in/ziadabdelbaqi</a>
+                <span class="text-gray-400">•</span>
+                <a href="https://github.com/zyadabdelbaqi" target="_blank" class="hover:underline">GitHub: github.com/zyadabdelbaqi</a>
+            </div>
+        </header>
+
+        <!-- PROFESSIONAL SUMMARY -->
+        <section class="mb-4">
+            <h2 class="section-header">PROFESSIONAL SUMMARY</h2>
+            <p class="text-justify text-gray-800">
+                Full-Stack Developer and SaaS Engineer with a Bachelor&apos;s degree in Business Information Systems (BIS) and hands-on experience building and deploying production-ready web applications and multi-tenant SaaS platforms. Proficient in <strong>Next.js, React, TypeScript, JavaScript, PostgreSQL, Supabase, Docker, Cloudflare R2, and Debian Linux</strong>. Strong technical focus on multi-tenant architecture, scalable backend systems, asynchronous background processing, media stream automation, and product-driven cloud deployment.
+            </p>
+        </section>
+
+        <!-- TECHNICAL SKILLS -->
+        <section class="mb-4">
+            <h2 class="section-header">TECHNICAL SKILLS</h2>
+            <div class="space-y-1.5 text-gray-800">
+                <p><strong>Languages:</strong> JavaScript (ES6+), TypeScript, SQL, HTML5, CSS3</p>
+                <p><strong>Frontend Development:</strong> React, Next.js (App Router), TanStack Start, Tailwind CSS, Canvas API, WebGPU, Progressive Web Apps (PWA)</p>
+                <p><strong>Backend Development:</strong> Node.js, RESTful APIs, PostgreSQL, Supabase, BullMQ, Background Job Processing</p>
+                <p><strong>Cloud &amp; Infrastructure:</strong> Docker, Debian Linux, VPS Administration, Cloudflare R2, Vercel, Edge Computing</p>
+                <p><strong>Architecture &amp; Systems:</strong> SaaS Architecture, Multi-Tenant Systems, Database Design, Media Processing (FFmpeg, RTMP, Live Streaming), AI API Integration (Gemini AI)</p>
+            </div>
+        </section>
+
+        <!-- SELECTED PROJECTS -->
+        <section class="mb-4">
+            <h2 class="section-header">SELECTED PROJECTS &amp; PRODUCTION EXPERIENCE</h2>
+            
+            <div class="space-y-4">
+                
+                <!-- PROJECT 1: TARTEEL STUDIO -->
+                <div class="project-block">
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="font-bold text-black text-[11pt]">TARTEEL STUDIO <span class="font-normal text-gray-700 text-[10pt]">| Full-Stack / SaaS Developer</span></h3>
+                    </div>
+                    <p class="text-xs text-gray-600 font-medium italic mb-1.5">Tech Stack: JavaScript, Tailwind CSS, Canvas API, Vercel Edge Computing</p>
+                    <ul class="list-disc list-outside ml-4 space-y-1 text-gray-800">
+                        <li>Architected and launched a multimedia SaaS platform for automated Quranic video generation with a zero-infrastructure-cost approach.</li>
+                        <li>Engineered client-side audio-visual synchronization and browser-based video rendering workflows to eliminate server compute costs.</li>
+                        <li>Optimized application architecture to minimize server-side processing and reduce infrastructure overhead.</li>
+                        <li>Implemented code obfuscation and proprietary security safeguards to protect core application logic.</li>
+                    </ul>
+                </div>
+
+                <!-- PROJECT 2: AMTDAD -->
+                <div class="project-block">
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="font-bold text-black text-[11pt]">AMTDAD <span class="font-normal text-gray-700 text-[10pt]">| Full-Stack Developer</span></h3>
+                    </div>
+                    <p class="text-xs text-gray-600 font-medium italic mb-1.5">Tech Stack: Next.js, TypeScript, PostgreSQL, Supabase, Cloudflare R2</p>
+                    <ul class="list-disc list-outside ml-4 space-y-1 text-gray-800">
+                        <li>Built a scalable multi-tenant e-commerce SaaS platform enabling merchants to deploy fully customized online storefronts.</li>
+                        <li>Designed a secure tenant-isolated architecture featuring inventory management, product catalogs, and customizable dynamic themes.</li>
+                        <li>Integrated PostgreSQL/Supabase for relational application data and Cloudflare R2 for high-throughput media asset storage.</li>
+                        <li>Streamlined order fulfillment workflows by implementing direct WhatsApp messaging integrations for seller-buyer conversion.</li>
+                    </ul>
+                </div>
+
+                <!-- PROJECT 3: KAYANSTREAM -->
+                <div class="project-block">
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="font-bold text-black text-[11pt]">KAYANSTREAM <span class="font-normal text-gray-700 text-[10pt]">| Full-Stack / Infrastructure Engineer</span></h3>
+                    </div>
+                    <p class="text-xs text-gray-600 font-medium italic mb-1.5">Tech Stack: Next.js, TypeScript, FFmpeg, BullMQ, Cloudflare R2, Docker, Debian Linux, RTMP</p>
+                    <ul class="list-disc list-outside ml-4 space-y-1 text-gray-800">
+                        <li>Engineered a 24/7 automated live-streaming SaaS platform delivering continuous video feeds to YouTube and RTMP destinations.</li>
+                        <li>Designed asynchronous background processing queues using BullMQ and custom FFmpeg video processing pipelines.</li>
+                        <li>Administered and deployed containerized services using Docker on Debian Linux VPS infrastructure for maximum uptime and stability.</li>
+                        <li>Integrated Cloudflare R2 for scalable video and media storage.</li>
+                    </ul>
+                </div>
+
+                <!-- PROJECT 4: ELFORMA -->
+                <div class="project-block">
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="font-bold text-black text-[11pt]">ELFORMA <span class="font-normal text-gray-700 text-[10pt]">| Full-Stack Developer</span></h3>
+                    </div>
+                    <p class="text-xs text-gray-600 font-medium italic mb-1.5">Tech Stack: TanStack Start, TypeScript, Tailwind CSS, Supabase, PWA</p>
+                    <ul class="list-disc list-outside ml-4 space-y-1 text-gray-800">
+                        <li>Developed a comprehensive gym management SaaS platform featuring multi-branch administration and subscription tracking.</li>
+                        <li>Built real-time operations dashboards and subscription lifecycle management workflows.</li>
+                        <li>Implemented Progressive Web App (PWA) capabilities for seamless cross-device mobile and desktop access.</li>
+                        <li>Integrated Supabase for authentication, backend services, and real-time data management.</li>
+                    </ul>
+                </div>
+
+                <!-- PROJECT 5: SIRASHARE -->
+                <div class="project-block">
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="font-bold text-black text-[11pt]">SIRASHARE <span class="font-normal text-gray-700 text-[10pt]">| Full-Stack Developer</span></h3>
+                    </div>
+                    <p class="text-xs text-gray-600 font-medium italic mb-1.5">Tech Stack: JavaScript, Tailwind CSS, Supabase, Gemini AI API</p>
+                    <ul class="list-disc list-outside ml-4 space-y-1 text-gray-800">
+                        <li>Created an interactive CV and portfolio builder with instant public-link sharing and bilingual (Arabic/English) support.</li>
+                        <li>Integrated Google Gemini AI API to provide automated ATS resume analysis and real-time optimization suggestions.</li>
+                        <li>Developed structured CV-generation workflows focused on machine-readable resume content.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section class="mb-4">
+            <h2 class="section-header">EDUCATION</h2>
+            <div class="flex justify-between items-baseline">
+                <div>
+                    <h3 class="font-bold text-black text-[10.5pt]">Bachelor of Science in Business Information Systems (BIS)</h3>
+                    <p class="text-xs text-gray-700">Misr Higher Institute for Commerce and Computers (El-Sallab Academy)</p>
+                </div>
+                <div class="text-right text-xs text-gray-700 font-medium">
+                    <span>Expected Graduation: 2026</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- LANGUAGES -->
+        <section class="mb-2">
+            <h2 class="section-header">LANGUAGES</h2>
+            <p class="text-gray-800">
+                <strong>Arabic:</strong> Native <span class="text-gray-400 mx-1">•</span> <strong>English:</strong> Professional Working Proficiency
+            </p>
+        </section>
+
+    </main>
+
+    <script>
+        function copyPlainText() {
+            const textContent = `
+ZIAD ABDULBAQI
+Full-Stack Developer | SaaS Engineer
+Al Mahallah al Kubra, Gharbiya, Egypt | (+20) 1204746971 | zyadzoiruwk@gmail.com
+Portfolio: https://ziadabdelbaqi.dev | LinkedIn: https://linkedin.com/in/ziadabdelbaqi | GitHub: https://github.com/zyadabdelbaqi
+
+SUMMARY
+Full-Stack Developer and SaaS Engineer with a Bachelor's degree in Business Information Systems (BIS) and hands-on experience building and deploying production-ready web applications and multi-tenant SaaS platforms. Proficient in Next.js, React, TypeScript, JavaScript, PostgreSQL, Supabase, Docker, Cloudflare R2, and Debian Linux. Strong technical focus on multi-tenant architecture, scalable backend systems, asynchronous background processing, media stream automation, and product-driven cloud deployment.
+
+TECHNICAL SKILLS
+Languages: JavaScript (ES6+), TypeScript, SQL, HTML5, CSS3
+Frontend: React, Next.js (App Router), TanStack Start, Tailwind CSS, Canvas API, WebGPU, PWA
+Backend: Node.js, RESTful APIs, PostgreSQL, Supabase, BullMQ, Background Job Processing
+Cloud & Infrastructure: Docker, Debian Linux, VPS Administration, Cloudflare R2, Vercel, Edge Computing
+Architecture & Systems: SaaS Architecture, Multi-Tenant Systems, Database Design, Media Processing (FFmpeg, RTMP, Live Streaming), AI API Integration (Gemini AI)
+
+SELECTED PROJECTS
+TARTEEL STUDIO | Full-Stack / SaaS Developer
+Tech Stack: JavaScript, Tailwind CSS, Canvas API, Vercel Edge Computing
+• Architected and launched a multimedia SaaS platform for automated Quranic video generation with a zero-infrastructure-cost approach.
+• Engineered client-side audio-visual synchronization and browser-based video rendering workflows to eliminate server compute costs.
+• Optimized application architecture to minimize server-side processing and reduce infrastructure overhead.
+• Implemented code obfuscation and proprietary security safeguards to protect core application logic.
+
+AMTDAD | Full-Stack Developer
+Tech Stack: Next.js, TypeScript, PostgreSQL, Supabase, Cloudflare R2
+• Built a scalable multi-tenant e-commerce SaaS platform enabling merchants to deploy fully customized online storefronts.
+• Designed a secure tenant-isolated architecture featuring inventory management, product catalogs, and customizable dynamic themes.
+• Integrated PostgreSQL/Supabase for relational application data and Cloudflare R2 for high-throughput media asset storage.
+• Streamlined order fulfillment workflows by implementing direct WhatsApp messaging integrations for seller-buyer conversion.
+
+KAYANSTREAM | Full-Stack / Infrastructure Engineer
+Tech Stack: Next.js, TypeScript, FFmpeg, BullMQ, Cloudflare R2, Docker, Debian Linux, RTMP
+• Engineered a 24/7 automated live-streaming SaaS platform delivering continuous video feeds to YouTube and RTMP destinations.
+• Designed asynchronous background processing queues using BullMQ and custom FFmpeg video processing pipelines.
+• Administered and deployed containerized services using Docker on Debian Linux VPS infrastructure for maximum uptime and stability.
+• Integrated Cloudflare R2 for scalable video and media storage.
+
+ELFORMA | Full-Stack Developer
+Tech Stack: TanStack Start, TypeScript, Tailwind CSS, Supabase, PWA
+• Developed a comprehensive gym management SaaS platform featuring multi-branch administration and subscription tracking.
+• Built real-time operations dashboards and subscription lifecycle management workflows.
+• Implemented Progressive Web App (PWA) capabilities for seamless cross-device mobile and desktop access.
+• Integrated Supabase for authentication, backend services, and real-time data management.
+
+SIRASHARE | Full-Stack Developer
+Tech Stack: JavaScript, Tailwind CSS, Supabase, Gemini AI API
+• Created an interactive CV and portfolio builder with instant public-link sharing and bilingual (Arabic/English) support.
+• Integrated Google Gemini AI API to provide automated ATS resume analysis and real-time optimization suggestions.
+• Developed structured CV-generation workflows focused on machine-readable resume content.
+
+EDUCATION
+Bachelor of Science in Business Information Systems (BIS)
+Misr Higher Institute for Commerce and Computers (El-Sallab Academy) | Expected Graduation: 2026
+
+LANGUAGES
+Arabic: Native | English: Professional Working Proficiency
+            `.trim();
+
+            navigator.clipboard.writeText(textContent).then(() => {
+                showToast("Plain text copied to clipboard!", "success");
+            }).catch(() => {
+                showToast("Failed to copy text. Try selecting manually.", "error");
+            });
+        }
+
+        function showToast(message, type = "success") {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMessage.innerText = message;
+
+            if (type === "success") {
+                toastIcon.className = "fa-solid fa-check-circle text-emerald-400 text-lg";
+            } else if (type === "info") {
+                toastIcon.className = "fa-solid fa-circle-info text-blue-400 text-lg";
+            } else {
+                toastIcon.className = "fa-solid fa-triangle-exclamation text-amber-400 text-lg";
+            }
+
+            toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>

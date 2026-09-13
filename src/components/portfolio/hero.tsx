@@ -1,4 +1,4 @@
-import { ArrowRight, Mail, MapPin } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Linkedin } from "lucide-react";
 
 export function Hero() {
   return (
@@ -36,11 +36,11 @@ export function Hero() {
 
         {/* Intro paragraph */}
         <p className="mx-auto mt-6 max-w-2xl text-center text-base leading-relaxed text-neutral-600 sm:text-lg md:mx-0 md:text-left">
-          I&apos;m Ziyad Abdulbaqi — a Full-Stack Developer & SaaS Builder
+          I&apos;m Ziad Abdelbaqi — a Full-Stack Developer & SaaS Builder
           focused on scalable web applications, cloud-native platforms, and
-          high-performance business solutions. From offline-first data
-          architecture to live media pipelines, I deliver complete products
-          efficiently.
+          high-performance business solutions. From client-side multimedia
+          automation to multi-tenant SaaS platforms and 24/7 live streaming
+          pipelines, I deliver complete products efficiently.
         </p>
 
         {/* CTAs */}
@@ -58,6 +58,15 @@ export function Hero() {
           >
             <Mail strokeWidth={1.5} className="h-4 w-4" />
             Contact Me
+          </a>
+          <a
+            href="https://www.linkedin.com/in/ziadabdelbaqi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex w-full items-center justify-center gap-1.5 rounded-md border border-neutral-200 bg-white px-4 py-2.5 text-sm font-medium text-neutral-700 transition-colors hover:border-neutral-900 hover:text-neutral-900 sm:w-auto"
+          >
+            <Linkedin strokeWidth={1.5} className="h-4 w-4" />
+            LinkedIn
           </a>
         </div>
 

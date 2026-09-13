@@ -30,8 +30,8 @@ export function About() {
             <p className="mt-5 text-base leading-relaxed text-neutral-600">
               I work as a product-minded builder: I take ownership from
               architecture through to the last pixel. Whether it&apos;s a
-              multi-tenant SaaS, an offline-first mobile workflow, or a live
-              media pipeline on a Debian VPS, my goal is the same — ship a
+              multi-tenant SaaS, a browser-based multimedia engine, or a 24/7
+              live streaming pipeline on a Debian VPS, my goal is the same — ship a
               coherent, performant product that holds up under real usage.
             </p>
             <p className="mt-5 text-base leading-relaxed text-neutral-600">

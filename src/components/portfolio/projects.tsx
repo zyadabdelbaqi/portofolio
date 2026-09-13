@@ -1,4 +1,4 @@
-import { ArrowUpRight, Boxes, Code2, Radio, Receipt } from "lucide-react";
+import { ArrowUpRight, Boxes, Radio, Sparkles, Store, Video } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 type Project = {
@@ -8,44 +8,87 @@ type Project = {
   summary: string;
   tags: string[];
   icon: LucideIcon;
+  url?: string;
 };
 
 const PROJECTS: Project[] = [
+  {
+    id: "tarteelstudio",
+    name: "Tarteel Studio",
+    subtitle: "Multimedia Automation & Video Generation SaaS",
+    summary:
+      "Client-side heavy multimedia SaaS platform for automated Quranic video generation, featuring zero-infrastructure-cost edge architecture, audio-visual sync, and proprietary code obfuscation.",
+    tags: [
+      "Vanilla JS",
+      "Tailwind CSS",
+      "Client-Side Video Rendering",
+      "Vercel Edge",
+      "Code Obfuscation",
+    ],
+    icon: Video,
+    url: "https://tarteel.studio/",
+  },
+  {
+    id: "amtdad",
+    name: "Amtdad",
+    subtitle: "Multi-Tenant E-Commerce & Storefront Builder SaaS",
+    summary:
+      "Full-stack multi-tenant e-commerce platform empowering merchants to launch branded online stores, customize visual themes, manage inventory, and process direct WhatsApp orders.",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "PostgreSQL",
+      "Supabase",
+      "Cloudflare R2",
+      "WhatsApp Commerce",
+    ],
+    icon: Store,
+    url: "https://amtdad.vercel.app",
+  },
   {
     id: "elforma",
     name: "ElForma",
     subtitle: "Multi-Tenant Gym Management SaaS Platform",
     summary:
-      "Full-suite management platform for fitness centers with offline-first data sync and multi-tenant member administration.",
-    tags: ["Next.js", "TypeScript", "Tailwind", "Supabase", "Offline-Sync"],
+      "Full-suite management platform for fitness centers with real-time member subscriptions, attendance tracking, and multi-branch administration.",
+    tags: ["TanStack Start", "TypeScript", "Tailwind CSS", "Supabase", "PWA"],
     icon: Boxes,
+    url: "https://elforma.vercel.app/",
   },
   {
-    id: "storecraft",
-    name: "StoreCraft (امتداد)",
-    subtitle: "E-Commerce Storefront Builder",
+    id: "kayanstream",
+    name: "KayanStream",
+    subtitle: "Automated Live Streaming & Cloud Media SaaS",
     summary:
-      "Scalable e-commerce creation platform empowering local merchants to quickly spin up custom storefronts and manage inventory.",
-    tags: ["Next.js", "Node.js", "PostgreSQL", "Cloud Storage", "REST APIs"],
-    icon: Code2,
-  },
-  {
-    id: "a4-invoicing",
-    name: "A4 Invoicing & QR Engine",
-    subtitle: "Tax Invoice Platform",
-    summary:
-      "Browser-based tax invoice generator featuring automated tax calculations, custom branding, and static QR code generation.",
-    tags: ["React", "Client-Side Rendering", "Dynamic QR", "SVG/PNG Export"],
-    icon: Receipt,
-  },
-  {
-    id: "rtmp-streaming",
-    name: "RTMP Live & Cloud Media Hub",
-    subtitle: "Live Media SaaS",
-    summary:
-      "Live video streaming platform with automated scheduling, cloud media storage, and browser-accelerated rendering.",
-    tags: ["Next.js", "Cloudflare R2", "RTMP Ingestion", "Docker", "Debian VPS"],
+      "High-availability platform for scheduling and broadcasting 24/7 live streams to YouTube & RTMP destinations, powered by FFmpeg workers, BullMQ queues, and Cloudflare R2 storage.",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "FFmpeg",
+      "BullMQ",
+      "Cloudflare R2",
+      "Debian VPS",
+      "Docker",
+    ],
     icon: Radio,
+    url: "https://www.kayanstream.com/",
+  },
+  {
+    id: "sirashare",
+    name: "SiraShare",
+    subtitle: "Interactive CV Platform & AI ATS Scanner",
+    summary:
+      "Web-based interactive CV builder and portfolio platform featuring public link sharing, dual-language support, and Gemini AI-powered ATS resume optimization.",
+    tags: [
+      "JavaScript",
+      "Tailwind CSS",
+      "Supabase",
+      "Gemini AI API",
+      "ATS Optimization",
+    ],
+    icon: Sparkles,
+    url: "https://sirashare.vercel.app",
   },
 ];
 
@@ -53,7 +96,9 @@ function ProjectCard({ project }: { project: Project }) {
   const Icon = project.icon;
   return (
     <a
-      href={`#project-${project.id}`}
+      href={project.url || `#project-${project.id}`}
+      target={project.url ? "_blank" : undefined}
+      rel={project.url ? "noopener noreferrer" : undefined}
       aria-label={`${project.name} — ${project.subtitle}`}
       className="card-hover group block rounded-lg border border-neutral-200 bg-white p-5 shadow-sm"
     >
@@ -110,8 +155,8 @@ export function Projects() {
             </h2>
           </div>
           <p className="max-w-md text-sm text-neutral-500">
-            A selection of shipped products spanning SaaS, e-commerce, billing,
-            and live media.
+            A selection of shipped products spanning SaaS, e-commerce,
+            multimedia automation, AI tooling, and live media.
           </p>
         </div>
 
