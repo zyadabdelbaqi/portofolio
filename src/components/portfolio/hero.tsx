@@ -30,7 +30,7 @@ export function Hero() {
           Full-Stack Developer
           <br className="hidden sm:block" />
           <span className="block text-neutral-900 sm:mt-2">
-            shipping SaaS end-to-end.
+            shipping SaaS & Corporate platforms.
           </span>
         </h1>
 
@@ -39,8 +39,8 @@ export function Hero() {
           I&apos;m Ziad Abdelbaqi — a Full-Stack Developer & SaaS Builder
           focused on scalable web applications, cloud-native platforms, and
           high-performance business solutions. From client-side multimedia
-          automation to multi-tenant SaaS platforms and 24/7 live streaming
-          pipelines, I deliver complete products efficiently.
+          automation to multi-tenant SaaS platforms, corporate web apps, and 24/7
+          live streaming pipelines, I deliver complete products efficiently.
         </p>
 
         {/* CTAs */}
@@ -77,7 +77,7 @@ export function Hero() {
             Available for Remote Roles Worldwide
           </span>
           <span className="font-mono text-neutral-300">·</span>
-          <span className="font-mono">Full-Stack · SaaS · Cloud</span>
+          <span className="font-mono">Full-Stack · SaaS · Corporate · Cloud</span>
         </div>
       </div>
     </section>

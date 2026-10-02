@@ -1,4 +1,4 @@
-import { ArrowUpRight, Boxes, Radio, Sparkles, Store, Video } from "lucide-react";
+import { ArrowUpRight, Boxes, Radio, Sparkles, Store, Video, Home } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 type Project = {
@@ -90,6 +90,22 @@ const PROJECTS: Project[] = [
     icon: Sparkles,
     url: "https://sirashare.vercel.app",
   },
+  {
+    id: "amadco",
+    name: "Amadco",
+    subtitle: "Home Services & Pest Control Corporate Agency",
+    summary:
+      "Professional corporate website for a leading home services company in Saudi Arabia, featuring a multi-service portfolio, dynamic design, and SEO optimization.",
+    tags: [
+      "Vanilla JS",
+      "HTML5",
+      "CSS3",
+      "SEO",
+      "Responsive Design",
+    ],
+    icon: Home,
+    url: "https://www.amadco-sa.com/",
+  },
 ];
 
 function ProjectCard({ project }: { project: Project }) {
@@ -156,7 +172,7 @@ export function Projects() {
           </div>
           <p className="max-w-md text-sm text-neutral-500">
             A selection of shipped products spanning SaaS, e-commerce,
-            multimedia automation, AI tooling, and live media.
+            corporate agencies, multimedia automation, AI tooling, and live media.
           </p>
         </div>
 
