@@ -124,7 +124,7 @@ export default function KayanStreamCaseStudy() {
                   <h2 className="text-2xl font-semibold m-0 text-foreground">Broadcast Stability & Stuttering</h2>
                 </div>
                 <p className="text-muted-foreground leading-relaxed">
-                  Keeping a stream running 24/7 without interruption is notoriously difficult. I faced severe challenges with stream buffering (تقطيع البث) and sudden disconnections.
+                  Keeping a stream running 24/7 without interruption is notoriously difficult. I faced severe challenges with stream buffering and sudden disconnections.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mt-4">
                   I solved this by tuning FFmpeg's readrate buffers (<code>-re</code>), adjusting thread queue sizes, and using <strong>BullMQ</strong> as a robust background job manager. If a stream drops due to a network hiccup from the destination (like YouTube), BullMQ automatically catches the failure and restarts the FFmpeg process within seconds, maintaining a stellar <strong>99.8% broadcast Uptime</strong> across all channels.
